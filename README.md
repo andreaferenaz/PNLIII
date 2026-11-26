@@ -39,6 +39,7 @@ make eval        # métricas -> reports/metrics.json y reports/metrics.md
 make index       # reconstruye el índice después de cambiar data/corpus
 make images      # baja 100 imágenes reales de prueba (dataset público de EPP)
 make eval-vision # evalúa el detector y el sistema completo con esas imágenes
+make ejemplos    # corre ejemplos de punta a punta y los guarda en reports/ejemplos.md
 make mock        # levanta la API en modo mock aunque haya claves
 ```
 

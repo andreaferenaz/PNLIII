@@ -1,0 +1,13 @@
+flowchart LR
+    U[Usuario<br/>API / Streamlit] -->|X-API-Key| API[FastAPI]
+    API --> SEC[Guardrails de entrada<br/>API key · inyección · PII · imagen]
+    SEC -->|/inspect| INS[Agente Inspector<br/>YOLOv8 de EPP]
+    INS -->|estado por EPP| NOR[Agente Normativo<br/>LLM grande]
+    NOR <--> RAG[(RAG híbrido<br/>BM25 + embeddings<br/>RRF + cross-encoder)]
+    NOR -->|dictamen + fuentes| VER[Agente Verificador<br/>reglas + LLM chico]
+    VER -->|observaciones| NOR
+    VER --> DEC{Guardrail final<br/>reglas por zona}
+    DEC -->|no cumple| HITL{{Revisión humana<br/>interrupt de LangGraph}}
+    HITL -->|aprueba| ACT[Acción<br/>log / webhook / mail]
+    SEC -->|/ask| CON[Agente Consultor<br/>LLM chico] <--> RAG
+    API --> AUD[(Auditoría)]

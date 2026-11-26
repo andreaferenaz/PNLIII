@@ -1,4 +1,4 @@
-.PHONY: install index test eval images eval-vision api mock ui
+.PHONY: install index test eval images eval-vision ejemplos api mock ui
 
 install:
 	pip install -r requirements.txt && pip install -e .
@@ -17,6 +17,9 @@ images:
 
 eval-vision:
 	python scripts/evaluate_vision.py
+
+ejemplos:
+	python scripts/ejemplos.py
 
 api:
 	uvicorn eppagent.api.main:app --reload --port 8000

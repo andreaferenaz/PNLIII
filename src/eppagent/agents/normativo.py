@@ -19,11 +19,15 @@ SYSTEM = (
 PROMPT = """ROL: NORMATIVO
 Zona: {zona_nombre} ({zona})
 
+EPP EXIGIDO EN LA ZONA (códigos): {exigido}
+
 ESTADO DETECTADO:
 {estado}
 
 {feedback}Tarea: indicá si la persona cumple con el EPP exigido en esa zona. Un elemento en
-"no_visible" no es incumplimiento: mencionalo como observación. Citá las fuentes con su
+"no_visible" no es incumplimiento: mencionalo como observación. Un elemento que no está en la
+lista de EPP exigido no es faltante aunque figure como "no_usa". En "faltantes" usá solo los
+códigos exactos de la lista de EPP exigido (por ejemplo "casco"). Citá las fuentes con su
 identificador [F:...].
 
 Respondé SOLO un JSON con este formato:
@@ -32,6 +36,17 @@ Respondé SOLO un JSON con este formato:
 CONTEXTO:
 {contexto}
 """
+
+
+def canonical_faltantes(items: list[str], exigido: list[str]) -> list[str]:
+    """Normaliza lo que escribe el LLM ("Casco de seguridad", "guantes") al código de la zona."""
+    out = []
+    for it in items:
+        t = str(it).lower().strip().replace(" ", "_")
+        code = next((e for e in exigido if e == t or e in t or t.rstrip("s") == e.rstrip("s")), t)
+        if code not in out:
+            out.append(code)
+    return out
 
 
 class NormativoAgent:
@@ -50,12 +65,15 @@ class NormativoAgent:
         with timer(t, "rag_ms"):
             ret = get_index().search(query)
         ctx = format_context(ret["results"])
+        exigido = z.get("exige", [])
         prompt = PROMPT.format(zona=zona, zona_nombre=z["nombre"], estado=estado_txt,
+                               exigido=", ".join(exigido) or "ninguno",
                                contexto=ctx,
                                feedback=f"OBSERVACIONES DEL VERIFICADOR A CORREGIR: {feedback}\n\n" if feedback else "")
         with timer(t, "llm_ms"):
             raw = get_llm().complete(prompt, system=SYSTEM, size="large")
         dictamen = parse_json_output(raw, Dictamen)
+        dictamen.faltantes = canonical_faltantes(dictamen.faltantes, exigido)
         ids = [r["id"] for r in ret["results"]]
         dictamen.fuentes = check_citations(dictamen.fuentes, ids)
         return AgentMessage(

@@ -94,7 +94,21 @@ class Orchestrator:
         return "normativo"
 
     def _n_decision(self, s: EPPState) -> dict:
-        return {}
+        """Guardrail final: si después de la reflexión el dictamen sigue sin cumplir las reglas,
+        los campos 'cumple' y 'faltantes' se toman del control determinista y se deja constancia."""
+        msg = s["dictamen_msg"]
+        d = msg["content"]["dictamen"]
+        insp = s["inspeccion"]["content"]
+        if not self.verificador.rule_check(s["zona"], insp["estado"], d):
+            return {}
+        exigido = self.verificador.zones.get(s["zona"], {}).get("exige", [])
+        esperados = sorted(e for e in exigido if insp["estado"].get(e) == "no_usa")
+        if (set(d["faltantes"]) == set(esperados)) and d["cumple"] == (not esperados):
+            return {}
+        log.warning("Dictamen corregido por reglas: faltantes %s -> %s", d["faltantes"], esperados)
+        d2 = {**d, "faltantes": esperados, "cumple": not esperados, "corregido_por_reglas": True,
+              "faltantes_llm": d["faltantes"], "cumple_llm": d["cumple"]}
+        return {"dictamen_msg": {**msg, "content": {**msg["content"], "dictamen": d2}}}
 
     def _route_decision(self, s: EPPState) -> str:
         d = s["dictamen_msg"]["content"]["dictamen"]
@@ -142,6 +156,8 @@ class Orchestrator:
         res = {"run_id": thread_id, "zona": state["zona"], "estado": state["inspeccion"]["content"]["estado"],
                "cumple": d["cumple"], "faltantes": d["faltantes"], "dictamen": d["dictamen"],
                "fuentes": d["fuentes"], "verificado": v["aprobado"],
+               "corregido_por_reglas": d.get("corregido_por_reglas", False),
+               "faltantes_llm": d.get("faltantes_llm", d["faltantes"]), "cumple_llm": d.get("cumple_llm", d["cumple"]),
                "observaciones_verificador": v["observaciones"], "rondas_reflexion": state["rondas"],
                "metricas": {"latencia_ms": round((time.perf_counter() - state["t0"]) * 1000, 1),
                             "tokens": usage.input_tokens + usage.output_tokens - state["tokens0"],

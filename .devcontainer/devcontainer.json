@@ -5,7 +5,7 @@
     "cpus": 2,
     "memory": "8gb"
   },
-  "postCreateCommand": "pip install --upgrade pip && pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt && pip install -e . && python scripts/build_index.py",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libgl1 libglib2.0-0 && pip install --upgrade pip && pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt && pip install -e . && python scripts/build_index.py",
   "forwardPorts": [
     8000,
     8501

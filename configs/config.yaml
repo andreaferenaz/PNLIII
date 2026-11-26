@@ -37,9 +37,9 @@ vision:
   # yolo | mock. En mock las detecciones se leen de un JSON junto a la imagen.
   backend: yolo
   # Modelo YOLO preentrenado para EPP (Hugging Face). Se puede cambiar por otro.
-  hf_repo: keremberke/yolov8n-protective-equipment-detection
+  hf_repo: keremberke/yolov8m-protective-equipment-detection   # versión m (la n casi no detecta cascos)
   hf_file: best.pt
-  conf_threshold: 0.35
+  conf_threshold: 0.15
 
 agents:
   max_reflection_rounds: 2   # parada temprana del bucle revisor

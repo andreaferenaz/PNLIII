@@ -121,3 +121,10 @@ def test_prompt_guard_bloquea_si_puntua_alto(monkeypatch):
     monkeypatch.setattr(guardrails, "get_prompt_guard", lambda: FakeGuard())
     with pytest.raises(InputRejected):
         guardrails.sanitize_question("Texto que el clasificador marca como inyección")
+
+
+def test_check_citations_normaliza_etiquetas():
+    from eppagent.security.guardrails import check_citations
+    ids = ["ley_19587#3", "politica_epp_planta#1"]
+    assert check_citations(["[F:ley_19587#3]", "F:politica_epp_planta#1", "inventada#9"], ids) == \
+        ["ley_19587#3", "politica_epp_planta#1"]

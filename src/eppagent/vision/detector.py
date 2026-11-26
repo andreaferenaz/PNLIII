@@ -1,6 +1,6 @@
 """Inferencia con un detector de EPP ya entrenado (YOLO de Hugging Face).
 
-El modelo por defecto (keremberke/yolov8n-protective-equipment-detection) detecta
+El modelo por defecto (keremberke/yolov8m-protective-equipment-detection) detecta
 clases como helmet / no_helmet, glove / no_glove, goggles / no_goggles, etc. Acá se
 traducen a un estado por elemento: usa | no_usa | no_visible.
 

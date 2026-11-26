@@ -1,0 +1,476 @@
+{
+  "consulta": {
+    "respuesta": "El trabajador debe cumplir con las normas de higiene y seguridad y con las recomendaciones sobre el uso, conservación y cuidado del equipo de protección personal, además de someterse a los exámenes médicos preventivos y cumplir con las indicaciones que se le formulen. También debe cuidar los avisos y carteles de higiene y seguridad y colaborar en la organización de programas de formación y educación en materia de seguridad. Estas obligaciones están establecidas en el Artículo 10 de la Ley 19587.",
+    "fuentes": [
+      "ley_19587#19"
+    ],
+    "retrieved_ids": [
+      "ley_19587#19",
+      "ley_19587#16",
+      "res_srt_299_11#3",
+      "res_srt_299_11#10"
+    ],
+    "contexto": [
+      {
+        "id": "ley_19587#19",
+        "title": "Ley 19587 de Higiene y Seguridad en el Trabajo (texto oficial)"
+      },
+      {
+        "id": "ley_19587#16",
+        "title": "Ley 19587 de Higiene y Seguridad en el Trabajo (texto oficial)"
+      },
+      {
+        "id": "res_srt_299_11#3",
+        "title": "Resolución SRT 299/2011 – Elementos de protección personal y constancia de entrega (texto oficial)"
+      },
+      {
+        "id": "res_srt_299_11#10",
+        "title": "Resolución SRT 299/2011 – Elementos de protección personal y constancia de entrega (texto oficial)"
+      }
+    ],
+    "timing_ms": {
+      "rag_ms": 12719.8,
+      "llm_ms": 758.1
+    },
+    "rag": {
+      "timing_ms": {
+        "retrieve": 41.9,
+        "total": 3369.5
+      },
+      "reranker": true,
+      "embeddings": "sentence-transformers"
+    },
+    "flags": []
+  },
+  "inyeccion": {
+    "status": 400,
+    "body": {
+      "detail": "Se detectó un posible intento de inyección de prompt."
+    }
+  },
+  "inspeccion_cumple": {
+    "run_id": "72098a967784",
+    "zona": "deposito",
+    "estado": {
+      "casco": "usa",
+      "chaleco": "usa",
+      "anteojos": "no_visible",
+      "guantes": "no_visible",
+      "calzado": "usa",
+      "barbijo": "no_visible",
+      "protector_auditivo": "no_visible"
+    },
+    "cumple": true,
+    "faltantes": [],
+    "dictamen": "La persona lleva casco, chaleco y calzado, que son los EPP obligatorios en la zona.",
+    "fuentes": [
+      "politica_epp_planta#3"
+    ],
+    "verificado": true,
+    "corregido_por_reglas": false,
+    "faltantes_llm": [],
+    "cumple_llm": true,
+    "observaciones_verificador": "",
+    "rondas_reflexion": 1,
+    "metricas": {
+      "latencia_ms": 875.2,
+      "tokens": 0,
+      "retrieved_ids": [
+        "politica_epp_planta#3",
+        "politica_epp_planta#5",
+        "politica_epp_planta#2",
+        "guia_seleccion_epp#2"
+      ]
+    },
+    "traza": [
+      {
+        "from": "inspector",
+        "to": "normativo",
+        "content": {
+          "zona": "deposito",
+          "estado": {
+            "casco": "usa",
+            "chaleco": "usa",
+            "anteojos": "no_visible",
+            "guantes": "no_visible",
+            "calzado": "usa",
+            "barbijo": "no_visible",
+            "protector_auditivo": "no_visible"
+          },
+          "detecciones": [
+            {
+              "label": "helmet"
+            },
+            {
+              "label": "vest"
+            },
+            {
+              "label": "shoes"
+            }
+          ]
+        },
+        "meta": {
+          "inference_ms": 0.0,
+          "backend": "provisto"
+        }
+      },
+      {
+        "from": "normativo",
+        "to": "verificador",
+        "content": {
+          "zona": "deposito",
+          "estado": {
+            "casco": "usa",
+            "chaleco": "usa",
+            "anteojos": "no_visible",
+            "guantes": "no_visible",
+            "calzado": "usa",
+            "barbijo": "no_visible",
+            "protector_auditivo": "no_visible"
+          },
+          "detecciones": [
+            {
+              "label": "helmet"
+            },
+            {
+              "label": "vest"
+            },
+            {
+              "label": "shoes"
+            }
+          ],
+          "dictamen": {
+            "cumple": true,
+            "faltantes": [],
+            "dictamen": "La persona lleva casco, chaleco y calzado, que son los EPP obligatorios en la zona.",
+            "fuentes": [
+              "politica_epp_planta#3"
+            ]
+          }
+        },
+        "meta": {
+          "rag_ms": 860.3,
+          "llm_ms": 0.0,
+          "retrieved_ids": [
+            "politica_epp_planta#3",
+            "politica_epp_planta#5",
+            "politica_epp_planta#2",
+            "guia_seleccion_epp#2"
+          ],
+          "rag": {
+            "timing_ms": {
+              "retrieve": 32.7,
+              "total": 860.3
+            },
+            "reranker": true,
+            "embeddings": "sentence-transformers"
+          }
+        }
+      },
+      {
+        "from": "verificador",
+        "to": "orquestador",
+        "content": {
+          "aprobado": true,
+          "observaciones": "",
+          "reglas": []
+        },
+        "meta": {
+          "llm_ms": 0.0
+        }
+      }
+    ]
+  },
+  "inspeccion_no_cumple": {
+    "run_id": "f683059f7be3",
+    "zona": "laboratorio",
+    "estado": {
+      "casco": "no_visible",
+      "chaleco": "no_visible",
+      "anteojos": "usa",
+      "guantes": "no_usa",
+      "calzado": "no_visible",
+      "barbijo": "usa",
+      "protector_auditivo": "no_visible"
+    },
+    "cumple": false,
+    "faltantes": [
+      "guantes"
+    ],
+    "dictamen": "Falta el uso de guantes de nitrilo, obligatorios en el laboratorio de calidad; los demás EPP exigidos están presentes.",
+    "fuentes": [
+      "politica_epp_planta#4"
+    ],
+    "verificado": true,
+    "corregido_por_reglas": false,
+    "faltantes_llm": [
+      "guantes"
+    ],
+    "cumple_llm": false,
+    "observaciones_verificador": "",
+    "rondas_reflexion": 1,
+    "metricas": {
+      "latencia_ms": 1458.7,
+      "tokens": 1304,
+      "retrieved_ids": [
+        "politica_epp_planta#4",
+        "politica_epp_planta#5",
+        "politica_epp_planta#2",
+        "politica_epp_planta#3"
+      ]
+    },
+    "traza": [
+      {
+        "from": "inspector",
+        "to": "normativo",
+        "content": {
+          "zona": "laboratorio",
+          "estado": {
+            "casco": "no_visible",
+            "chaleco": "no_visible",
+            "anteojos": "usa",
+            "guantes": "no_usa",
+            "calzado": "no_visible",
+            "barbijo": "usa",
+            "protector_auditivo": "no_visible"
+          },
+          "detecciones": [
+            {
+              "label": "goggles"
+            },
+            {
+              "label": "no_glove"
+            },
+            {
+              "label": "mask"
+            }
+          ]
+        },
+        "meta": {
+          "inference_ms": 0.0,
+          "backend": "provisto"
+        }
+      },
+      {
+        "from": "normativo",
+        "to": "verificador",
+        "content": {
+          "zona": "laboratorio",
+          "estado": {
+            "casco": "no_visible",
+            "chaleco": "no_visible",
+            "anteojos": "usa",
+            "guantes": "no_usa",
+            "calzado": "no_visible",
+            "barbijo": "usa",
+            "protector_auditivo": "no_visible"
+          },
+          "detecciones": [
+            {
+              "label": "goggles"
+            },
+            {
+              "label": "no_glove"
+            },
+            {
+              "label": "mask"
+            }
+          ],
+          "dictamen": {
+            "cumple": false,
+            "faltantes": [
+              "guantes"
+            ],
+            "dictamen": "Falta el uso de guantes de nitrilo, obligatorios en el laboratorio de calidad; los demás EPP exigidos están presentes.",
+            "fuentes": [
+              "politica_epp_planta#4"
+            ]
+          }
+        },
+        "meta": {
+          "rag_ms": 559.8,
+          "llm_ms": 621.9,
+          "retrieved_ids": [
+            "politica_epp_planta#4",
+            "politica_epp_planta#5",
+            "politica_epp_planta#2",
+            "politica_epp_planta#3"
+          ],
+          "rag": {
+            "timing_ms": {
+              "retrieve": 32.3,
+              "total": 559.8
+            },
+            "reranker": true,
+            "embeddings": "sentence-transformers"
+          }
+        }
+      },
+      {
+        "from": "verificador",
+        "to": "orquestador",
+        "content": {
+          "aprobado": true,
+          "observaciones": "",
+          "reglas": []
+        },
+        "meta": {
+          "llm_ms": 271.0
+        }
+      }
+    ],
+    "estado_alerta": "pendiente_aprobacion",
+    "revision_humana": {
+      "pregunta": "¿Se envía la alerta de incumplimiento?",
+      "zona": "laboratorio",
+      "faltantes": [
+        "guantes"
+      ],
+      "dictamen": "Falta el uso de guantes de nitrilo, obligatorios en el laboratorio de calidad; los demás EPP exigidos están presentes."
+    }
+  },
+  "decision_humana": {
+    "run_id": "f683059f7be3",
+    "zona": "laboratorio",
+    "estado": {
+      "casco": "no_visible",
+      "chaleco": "no_visible",
+      "anteojos": "usa",
+      "guantes": "no_usa",
+      "calzado": "no_visible",
+      "barbijo": "usa",
+      "protector_auditivo": "no_visible"
+    },
+    "cumple": false,
+    "faltantes": [
+      "guantes"
+    ],
+    "dictamen": "Falta el uso de guantes de nitrilo, obligatorios en el laboratorio de calidad; los demás EPP exigidos están presentes.",
+    "fuentes": [
+      "politica_epp_planta#4"
+    ],
+    "verificado": true,
+    "corregido_por_reglas": false,
+    "faltantes_llm": [
+      "guantes"
+    ],
+    "cumple_llm": false,
+    "observaciones_verificador": "",
+    "rondas_reflexion": 1,
+    "metricas": {
+      "latencia_ms": 1472.5,
+      "tokens": 1304,
+      "retrieved_ids": [
+        "politica_epp_planta#4",
+        "politica_epp_planta#5",
+        "politica_epp_planta#2",
+        "politica_epp_planta#3"
+      ]
+    },
+    "traza": [
+      {
+        "from": "inspector",
+        "to": "normativo",
+        "content": {
+          "zona": "laboratorio",
+          "estado": {
+            "casco": "no_visible",
+            "chaleco": "no_visible",
+            "anteojos": "usa",
+            "guantes": "no_usa",
+            "calzado": "no_visible",
+            "barbijo": "usa",
+            "protector_auditivo": "no_visible"
+          },
+          "detecciones": [
+            {
+              "label": "goggles"
+            },
+            {
+              "label": "no_glove"
+            },
+            {
+              "label": "mask"
+            }
+          ]
+        },
+        "meta": {
+          "inference_ms": 0.0,
+          "backend": "provisto"
+        }
+      },
+      {
+        "from": "normativo",
+        "to": "verificador",
+        "content": {
+          "zona": "laboratorio",
+          "estado": {
+            "casco": "no_visible",
+            "chaleco": "no_visible",
+            "anteojos": "usa",
+            "guantes": "no_usa",
+            "calzado": "no_visible",
+            "barbijo": "usa",
+            "protector_auditivo": "no_visible"
+          },
+          "detecciones": [
+            {
+              "label": "goggles"
+            },
+            {
+              "label": "no_glove"
+            },
+            {
+              "label": "mask"
+            }
+          ],
+          "dictamen": {
+            "cumple": false,
+            "faltantes": [
+              "guantes"
+            ],
+            "dictamen": "Falta el uso de guantes de nitrilo, obligatorios en el laboratorio de calidad; los demás EPP exigidos están presentes.",
+            "fuentes": [
+              "politica_epp_planta#4"
+            ]
+          }
+        },
+        "meta": {
+          "rag_ms": 559.8,
+          "llm_ms": 621.9,
+          "retrieved_ids": [
+            "politica_epp_planta#4",
+            "politica_epp_planta#5",
+            "politica_epp_planta#2",
+            "politica_epp_planta#3"
+          ],
+          "rag": {
+            "timing_ms": {
+              "retrieve": 32.3,
+              "total": 559.8
+            },
+            "reranker": true,
+            "embeddings": "sentence-transformers"
+          }
+        }
+      },
+      {
+        "from": "verificador",
+        "to": "orquestador",
+        "content": {
+          "aprobado": true,
+          "observaciones": "",
+          "reglas": []
+        },
+        "meta": {
+          "llm_ms": 271.0
+        }
+      }
+    ],
+    "estado_alerta": "enviada",
+    "accion": {
+      "canal": "log",
+      "archivo": "logs/alertas.jsonl"
+    }
+  }
+}

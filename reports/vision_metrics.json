@@ -1,0 +1,16 @@
+{
+  "detector": {
+    "imagenes": 100,
+    "exactitud_por_elemento": {
+      "anteojos": 0.72,
+      "barbijo": 1.0,
+      "calzado": 0.978,
+      "casco": 0.098,
+      "guantes": 0.61
+    },
+    "exactitud_estado_global": 0.612,
+    "no_usa_precision": 0.065,
+    "no_usa_recall": 0.08,
+    "no_usa_f1": 0.071
+  }
+}

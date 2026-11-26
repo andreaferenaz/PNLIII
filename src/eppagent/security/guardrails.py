@@ -155,7 +155,15 @@ def parse_json_output(text: str, model: type[BaseModel]) -> BaseModel:
 def check_citations(fuentes: list[str], allowed_ids: list[str]) -> list[str]:
     """Descarta fuentes que no estaban en el contexto recuperado (evita citas inventadas)."""
     allowed = set(allowed_ids) | {a.split("#")[0] for a in allowed_ids}
-    return [f for f in fuentes if f in allowed]
+    out = []
+    for f in fuentes:
+        # el LLM a veces copia la etiqueta completa: "[F:ley_19587#3]" o "F:ley_19587#3"
+        norm = str(f).strip().strip("[]").strip()
+        if norm.upper().startswith("F:"):
+            norm = norm[2:].strip()
+        if norm in allowed and norm not in out:
+            out.append(norm)
+    return out
 
 
 # ---------------------------------------------------------------- auditoría

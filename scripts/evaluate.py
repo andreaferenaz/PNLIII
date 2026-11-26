@@ -70,16 +70,23 @@ def eval_answers(qa):
 
 def eval_agents(cases):
     orch = get_orchestrator()
-    rows, rounds, lat, tokens, fuentes = [], [], [], [], []
+    rows, rows_llm, rounds, lat, tokens, fuentes, reglas = [], [], [], [], [], [], []
     for c in cases:
         out = orch.inspect(c["zona"], detections=c["detecciones"], notify_on_fail=False)
         rows.append({"pred_cumple": out["cumple"], "gold_cumple": c["cumple"],
                      "pred_faltantes": out["faltantes"], "gold_faltantes": c["faltantes"]})
+        rows_llm.append({"pred_cumple": out["cumple_llm"], "gold_cumple": c["cumple"],
+                         "pred_faltantes": out["faltantes_llm"], "gold_faltantes": c["faltantes"]})
+        reglas.append(out["corregido_por_reglas"])
         rounds.append(out["rondas_reflexion"])
         lat.append(out["metricas"]["latencia_ms"])
         tokens.append(out["metricas"]["tokens"])
         fuentes.append(bool(out["fuentes"]))
+    llm = decision_accuracy(rows_llm)
     return {**decision_accuracy(rows),
+            "exactitud_cumple_solo_llm": llm["exactitud_cumple"],
+            "exactitud_faltantes_solo_llm": llm["exactitud_faltantes"],
+            "casos_corregidos_por_reglas": sum(reglas),
             "rondas_reflexion_promedio": round(statistics.mean(rounds), 2),
             "casos_corregidos_por_verificador": sum(1 for r in rounds if r > 1),
             "dictamenes_con_fuente": round(sum(fuentes) / len(fuentes), 3),
