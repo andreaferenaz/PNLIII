@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.env
+.venv/
+.pytest_cache/
+logs/
+data/index/
+*.pt
+data/eval/vision_raw/

@@ -1,0 +1,35 @@
+{
+ "zona": "produccion",
+ "detections": [
+  {
+   "label": "helmet",
+   "conf": 0.93,
+   "box": [
+    130,
+    40,
+    230,
+    120
+   ]
+  },
+  {
+   "label": "goggles",
+   "conf": 0.81,
+   "box": [
+    150,
+    90,
+    210,
+    115
+   ]
+  },
+  {
+   "label": "shoes",
+   "conf": 0.79,
+   "box": [
+    120,
+    420,
+    240,
+    470
+   ]
+  }
+ ]
+}

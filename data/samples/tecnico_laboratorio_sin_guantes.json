@@ -1,0 +1,35 @@
+{
+ "zona": "laboratorio",
+ "detections": [
+  {
+   "label": "goggles",
+   "conf": 0.88,
+   "box": [
+    150,
+    90,
+    210,
+    115
+   ]
+  },
+  {
+   "label": "mask",
+   "conf": 0.86,
+   "box": [
+    150,
+    115,
+    210,
+    150
+   ]
+  },
+  {
+   "label": "no_glove",
+   "conf": 0.8,
+   "box": [
+    90,
+    250,
+    140,
+    300
+   ]
+  }
+ ]
+}

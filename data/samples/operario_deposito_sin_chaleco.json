@@ -1,0 +1,35 @@
+{
+ "zona": "deposito",
+ "detections": [
+  {
+   "label": "helmet",
+   "conf": 0.91,
+   "box": [
+    120,
+    40,
+    220,
+    120
+   ]
+  },
+  {
+   "label": "no_vest",
+   "conf": 0.84,
+   "box": [
+    100,
+    130,
+    260,
+    300
+   ]
+  },
+  {
+   "label": "shoes",
+   "conf": 0.77,
+   "box": [
+    120,
+    420,
+    240,
+    470
+   ]
+  }
+ ]
+}

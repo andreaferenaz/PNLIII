@@ -1,0 +1,64 @@
+# Configuración general del POC. Los valores se pueden pisar con variables de entorno
+# (ver src/eppagent/config.py).
+
+llm:
+  # groq | anthropic | openai | mock (mock funciona sin clave y sin internet).
+  # Si el proveedor elegido no tiene clave, se usa el primero disponible.
+  provider: groq
+  # Selección dinámica de modelo (optimización de costos):
+  # el modelo chico clasifica y verifica, el grande redacta el dictamen.
+  models:
+    groq:                       # clave gratuita en https://console.groq.com
+      small: openai/gpt-oss-20b
+      large: openai/gpt-oss-120b
+    anthropic:
+      small: claude-haiku-5-5
+      large: claude-sonnet-5-5
+    openai:
+      small: gpt-4o-mini
+      large: gpt-4o
+  max_tokens: 600
+  temperature: 0.1
+  cache: true            # caché de respuestas por hash del prompt
+  cache_path: logs/llm_cache.json
+
+rag:
+  corpus_dir: data/corpus
+  index_dir: data/index
+  chunk_size: 700        # caracteres
+  chunk_overlap: 120
+  embedding_model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  reranker_model: cross-encoder/mmarco-mMiniLMv2-L12-H384-v1
+  top_k_retrieve: 10     # candidatos por cada retriever
+  top_k_final: 4         # contexto que llega al LLM (reducción de contexto)
+  rrf_k: 60
+
+vision:
+  # yolo | mock. En mock las detecciones se leen de un JSON junto a la imagen.
+  backend: yolo
+  # Modelo YOLO preentrenado para EPP (Hugging Face). Se puede cambiar por otro.
+  hf_repo: keremberke/yolov8n-protective-equipment-detection
+  hf_file: best.pt
+  conf_threshold: 0.35
+
+agents:
+  max_reflection_rounds: 2   # parada temprana del bucle revisor
+  human_in_the_loop: true    # la alerta espera aprobación humana (interrupt de LangGraph)
+
+security:
+  require_api_key: true
+  max_question_chars: 800
+  max_image_mb: 8
+  audit_log: logs/audit.jsonl
+  # Clasificador de inyección de prompts de Meta (modelo con acceso restringido en
+  # Hugging Face: aceptar la licencia y definir HF_TOKEN). Complementa las reglas.
+  prompt_guard:
+    enabled: false
+    model: meta-llama/Llama-Prompt-Guard-2-86M
+    threshold: 0.5
+
+actions:
+  # log | webhook | smtp
+  notifier: log
+  webhook_url: ""
+  smtp_to: ""

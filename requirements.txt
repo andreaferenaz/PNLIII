@@ -1,0 +1,34 @@
+# API
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+pydantic==2.10.4
+streamlit==1.41.1
+
+# RAG
+rank-bm25==0.2.2
+scikit-learn==1.6.0
+numpy==1.26.4
+sentence-transformers==3.3.1
+
+# Vision (detector de EPP preentrenado)
+ultralytics==8.3.55
+pillow==11.0.0
+
+# Orquestación de agentes
+langgraph==1.2.21
+
+# LLM (Groq usa el cliente de OpenAI)
+anthropic==0.42.0
+openai==1.58.1
+
+# Prompt Guard 2 (opcional, ver configs/config.yaml)
+transformers==4.51.3
+
+# Utilidades
+pyyaml==6.0.2
+httpx==0.28.1
+python-dotenv==1.0.1
+
+# Tests
+pytest==8.3.4

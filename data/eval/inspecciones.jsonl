@@ -1,0 +1,15 @@
+{"zona": "produccion", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "shoes", "conf": 0.9}, {"label": "goggles", "conf": 0.9}], "cumple": true, "faltantes": []}
+{"zona": "produccion", "detecciones": [{"label": "no_helmet", "conf": 0.9}, {"label": "shoes", "conf": 0.9}, {"label": "goggles", "conf": 0.9}], "cumple": false, "faltantes": ["casco"]}
+{"zona": "deposito", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "vest", "conf": 0.9}, {"label": "shoes", "conf": 0.9}], "cumple": true, "faltantes": []}
+{"zona": "deposito", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "no_vest", "conf": 0.9}, {"label": "shoes", "conf": 0.9}], "cumple": false, "faltantes": ["chaleco"]}
+{"zona": "deposito", "detecciones": [{"label": "no_helmet", "conf": 0.9}, {"label": "vest", "conf": 0.9}], "cumple": false, "faltantes": ["casco"]}
+{"zona": "laboratorio", "detecciones": [{"label": "goggles", "conf": 0.9}, {"label": "glove", "conf": 0.9}, {"label": "mask", "conf": 0.9}], "cumple": true, "faltantes": []}
+{"zona": "laboratorio", "detecciones": [{"label": "goggles", "conf": 0.9}, {"label": "no_glove", "conf": 0.9}, {"label": "mask", "conf": 0.9}, {"label": "no_helmet", "conf": 0.9}], "cumple": false, "faltantes": ["guantes"]}
+{"zona": "laboratorio", "detecciones": [{"label": "no_goggles", "conf": 0.9}, {"label": "glove", "conf": 0.9}, {"label": "no_mask", "conf": 0.9}], "cumple": false, "faltantes": ["anteojos", "barbijo"]}
+{"zona": "mantenimiento", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "goggles", "conf": 0.9}, {"label": "glove", "conf": 0.9}, {"label": "shoes", "conf": 0.9}], "cumple": true, "faltantes": []}
+{"zona": "mantenimiento", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "no_goggles", "conf": 0.9}, {"label": "glove", "conf": 0.9}, {"label": "shoes", "conf": 0.9}], "cumple": false, "faltantes": ["anteojos"]}
+{"zona": "mantenimiento", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "goggles", "conf": 0.9}, {"label": "no_glove", "conf": 0.9}, {"label": "no_shoes", "conf": 0.9}], "cumple": false, "faltantes": ["calzado", "guantes"]}
+{"zona": "oficinas", "detecciones": [{"label": "no_helmet", "conf": 0.9}, {"label": "no_vest", "conf": 0.9}], "cumple": true, "faltantes": []}
+{"zona": "oficinas", "detecciones": [], "cumple": true, "faltantes": []}
+{"zona": "deposito", "detecciones": [{"label": "helmet", "conf": 0.9}, {"label": "vest", "conf": 0.9}], "cumple": true, "faltantes": []}
+{"zona": "produccion", "detecciones": [{"label": "no_helmet", "conf": 0.9}, {"label": "no_goggles", "conf": 0.9}, {"label": "no_shoes", "conf": 0.9}], "cumple": false, "faltantes": ["anteojos", "calzado", "casco"]}

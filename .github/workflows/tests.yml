@@ -1,0 +1,19 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Dependencias livianas (sin torch)
+        run: |
+          pip install langgraph fastapi uvicorn python-multipart pydantic rank-bm25 scikit-learn numpy pyyaml httpx python-dotenv pillow pytest
+          pip install -e .
+      - name: Tests en modo mock
+        env:
+          LLM_PROVIDER: mock
+          VISION_BACKEND: mock
+        run: pytest -q

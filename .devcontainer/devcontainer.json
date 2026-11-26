@@ -1,0 +1,47 @@
+{
+  "name": "TP PLN III - Asistente de cumplimiento de EPP",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "8gb"
+  },
+  "postCreateCommand": "pip install --upgrade pip && pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt && pip install -e . && python scripts/build_index.py",
+  "forwardPorts": [
+    8000,
+    8501
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "API FastAPI",
+      "onAutoForward": "openPreview"
+    },
+    "8501": {
+      "label": "Demo Streamlit"
+    }
+  },
+  "secrets": {
+    "GROQ_API_KEY": {
+      "description": "Clave gratuita de Groq (recomendada): https://console.groq.com"
+    },
+    "ANTHROPIC_API_KEY": {
+      "description": "Clave de Anthropic (opcional)"
+    },
+    "OPENAI_API_KEY": {
+      "description": "Clave de OpenAI (opcional)"
+    },
+    "APP_API_KEY": {
+      "description": "Clave para llamar a la API del TP"
+    },
+    "HF_TOKEN": {
+      "description": "Token de Hugging Face (opcional, para Prompt Guard 2)"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
